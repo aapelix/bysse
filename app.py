@@ -1,16 +1,14 @@
-import base64
 import requests
-from requests.models import Response
 import gtfs_realtime_pb2
-from flask import Flask, jsonify, request
-from dotenv import load_dotenv
-import os
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-load_dotenv()
+@app.route("/")
+def home():
+    return jsonify({"message": "Use /positions/ to actually get something"})
 
-@app.route("/positions", methods=["GET"])
+@app.route("/positions")
 def position():
 
     username = '2024144504049313'
@@ -73,7 +71,3 @@ def position():
     else:
         print(f"Failed to fetch data. HTTP status code: {response.status_code}")
         return jsonify({"message": f"Failed to fetch data. HTTP status code: {response.status_code}"})
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
