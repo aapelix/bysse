@@ -1,8 +1,14 @@
 import requests
 import gtfs_realtime_pb2
 from flask import Flask, jsonify
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
+load_dotenv()
+
+username = os.getenv("username")
+password = os.getenv("username")
 
 @app.route("/")
 def home():
